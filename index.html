@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhishek Kumar - Professional Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00D4FF;
+            --secondary: #1E293B;
+            --dark-bg: #0F1419;
+            --card-bg: #1A1F2E;
+            --text: #E0E6ED;
+            --text-secondary: #B0B9C8;
+            --accent: #00FFC8;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0F1419 0%, #1a1f2e 100%);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 20, 25, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* ===== HEADER SECTION ===== */
+        .header {
+            background: linear-gradient(135deg, rgba(15, 20, 25, 0.9) 0%, rgba(26, 31, 46, 0.8) 100%);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 12px;
+            padding: 3rem;
+            margin: 100px 2rem 3rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 255, 200, 0.1));
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .header-content h1 {
+            font-size: 2.5rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .header-content p {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .header-content .location {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .header-content .badge {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* ===== SECTIONS ===== */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            background: linear-gradient(135deg, rgba(26, 31, 46, 0.6) 0%, rgba(26, 31, 46, 0.4) 100%);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 1rem;
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* ===== SKILLS WITH PROGRESS BARS ===== */
+        .skills-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .skill-item {
+            margin-bottom: 2rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+        }
+
+        .skill-name label {
+            color: var(--text);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .skill-name span {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 10px;
+            transition: width 0.8s ease;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
+        }
+
+        /* ===== EDUCATION & EXPERIENCE ===== */
+        .edu-item {
+            background: rgba(0, 212, 255, 0.05);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .edu-item:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .edu-item h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .edu-item .institution {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .edu-item .year {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .edu-item .score {
+            color: var(--primary);
+            font-weight: 600;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .info-card {
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: var(--primary);
+        }
+
+        .info-label {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-value {
+            color: var(--text);
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: rgba(15, 20, 25, 0.5);
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer p {
+            color: var(--text-secondary);
+            margin: 0.5rem 0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 50%;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .social-links a:hover {
+            border-color: var(--primary);
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .profile-image {
+                width: 150px;
+                height: 150px;
+                margin: 0 auto;
+            }
+
+            .header-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .skills-section {
+                grid-template-columns: 1fr;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">AK</div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HEADER SECTION -->
+    <div class="header">
+        <div class="profile-image">
+            <img src="second.png" alt="Abhishek Kumar Shah">
+        </div>
+        <div class="header-content">
+            <h1>Abhishek Kumar Shah</h1>
+            <p>Professional Portfolio</p>
+            <div class="location">Parsa, Nepal</div>
+            <span class="badge">Computer Science Student</span>
+        </div>
+    </div>
+
+    <!-- ABOUT SECTION -->
+    <div class="container">
+        <section id="about" class="section">
+            <h2 class="section-title">About</h2>
+            <div class="about-grid">
+                <div>
+                    <h3 style="color: var(--primary); margin-bottom: 1rem;">Professional Summary</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+                        Dedicated professional from contributing to organizational growth with high-level acumen and technical skills. Passionate about graphics design, computer operations, and digital content creation.
+                    </p>
+                    <button style="background: linear-gradient(135deg, var(--primary), var(--accent)); border: none; color: var(--dark-bg); padding: 0.7rem 1.8rem; border-radius: 25px; cursor: pointer; font-weight: 600; margin-top: 1.5rem; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Connect with Me</button>
+                </div>
+                <div class="about-grid" style="grid-template-columns: 1fr; gap: 1rem;">
+                    <div class="info-card">
+                        <div class="info-label">📍 Location</div>
+                        <div class="info-value">Birgunj, Nepal</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">📱 Mobile</div>
+                        <div class="info-value">+977 9805363671</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">✉️ Email</div>
+                        <div class="info-value" style="font-size: 0.9rem;">abhishekkumar2323hff@gmail.com</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">🗣️ Languages</div>
+                        <div class="info-value">Nepali, English, Hindi</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- EDUCATION SECTION -->
+    <div class="container">
+        <section id="education" class="section">
+            <h2 class="section-title">Education</h2>
+            <div class="edu-item">
+                <h3>Graphics Design With Canva</h3>
+                <div class="institution">Coursera</div>
+                <div class="year">2025</div>
+                <div class="score">Percentage: 92%</div>
+            </div>
+
+            <div class="edu-item">
+                <h3>Basic Computer Course</h3>
+                <div class="institution">Pragati Institute, Birgunj</div>
+                <div class="year">2024</div>
+                <div class="score">Percentage: 98%</div>
+            </div>
+
+            <div class="edu-item">
+                <h3>SEE (Secondary Education Examination)</h3>
+                <div class="institution">Shree Nepal National Secondary School</div>
+                <div class="year">2024</div>
+                <div class="score">Percentage: 3.14</div>
+            </div>
+
+            <div class="edu-item">
+                <h3>Photography Basic</h3>
+                <div class="institution">DS Studio and Video Mixing Lab</div>
+                <div class="year">2023</div>
+                <div class="score">Percentage: 65%</div>
+            </div>
+        </section>
+    </div>
+
+    <!-- SKILLS SECTION -->
+    <div class="container">
+        <section id="skills" class="section">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-section">
+                <div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <label>Graphics Design</label>
+                            <span>92%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 92%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <label>Computer Operations</label>
+                            <span>98%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 98%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <label>Photography</label>
+                            <span>65%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <label>Video Editing</label>
+                            <span>80%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 80%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <label>Digital Marketing</label>
+                            <span>75%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <label>Professional Services</label>
+                            <span>85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=100078794274657" title="Facebook">f</a>
+            <a href="https://www.instagram.com/avishek_graphixs/" title="Instagram">in</a>
+            <a href="https://www.linkedin.com/in/abhishek-kumar-3a22b835a/" title="LinkedIn">Li</a>
+            <a href="abhishekkumar2323hff@gmail.com" title="Email">✉</a>
+        </div>
+        <p>&copy; 2025 Abhishek Kumar Shah. All rights reserved.</p>
+        <p>Crafted with creativity and passion</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Update active link
+                    document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Animate progress bars on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.getAttribute('data-width') || entry.target.style.width;
+                }
+            });
+        });
+
+        document.querySelectorAll('.progress-fill').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

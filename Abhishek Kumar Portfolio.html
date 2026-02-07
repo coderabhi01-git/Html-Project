@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhishek Kumar - Computer Operator & Graphics Designer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366F1;
+            --secondary: #EC4899;
+            --dark: #FFFFFF;
+            --darker: #F8FAFC;
+            --light: #F5F7FA;
+            --accent: #10B981;
+            --text: #1E293B;
+            --text-secondary: #64748B;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #F5E6FF 50%, #FFF0F5 100%);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.1);
+            animation: slideDown 0.6s ease-out;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #6366F1, #EC4899);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            top: 10%;
+            left: 10%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: 10%;
+            right: 10%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-50px);
+            }
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            text-align: center;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            animation: slideIn 0.8s ease-out 0.2s both;
+        }
+
+        .hero h3 {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            animation: slideIn 0.8s ease-out 0.4s both;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            animation: slideIn 0.8s ease-out 0.6s both;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideIn 0.8s ease-out 0.8s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--darker);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.5);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* ===== SKILLS SECTION ===== */
+        .skills {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, #F0F4FF 0%, #FFF5E6 100%);
+            border: 2px solid rgba(99, 102, 241, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            background: linear-gradient(135deg, #E0E7FF 0%, #FFF0E6 100%);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .skill-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .skill-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ===== EDUCATION SECTION ===== */
+        .education {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(236, 72, 153, 0.05) 100%);
+            position: relative;
+        }
+
+        .education-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, #6366F1, #EC4899, transparent);
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .timeline-item:nth-child(odd) {
+            margin-left: 0;
+            margin-right: 50%;
+            padding-right: 3rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: 50%;
+            margin-right: 0;
+            padding-left: 3rem;
+        }
+
+        .timeline-content {
+            background: linear-gradient(135deg, #F0F4FF 0%, #FEF3F2 100%);
+            border: 2px solid rgba(99, 102, 241, 0.2);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            background: linear-gradient(135deg, #E0E7FF 0%, #FEE2E4 100%);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border: 3px solid #FFFFFF;
+            border-radius: 50%;
+            left: 50%;
+            top: 1.5rem;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+
+        .timeline-year {
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-institution {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-score {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                margin: 0;
+                padding: 0;
+                margin-left: 60px;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .info-item {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(236, 72, 153, 0.08) 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .info-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-value {
+            color: var(--primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .avatar {
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #6366F1 0%, #EC4899 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+            animation: pulse 3s ease-in-out infinite;
+            overflow: hidden;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+            }
+            50% {
+                box-shadow: 0 20px 80px rgba(99, 102, 241, 0.5);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .avatar {
+                width: 200px;
+                height: 200px;
+                font-size: 5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.03) 0%, rgba(236, 72, 153, 0.03) 100%);
+            text-align: center;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, #F0F4FF 0%, #FFF5E6 100%);
+            border: 2px solid rgba(99, 102, 241, 0.2);
+            border-radius: 15px;
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-box:hover {
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-box h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-box a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-box a:hover {
+            color: var(--primary);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F5F1FF 100%);
+            padding: 2rem;
+            text-align: center;
+            border-top: 2px solid rgba(99, 102, 241, 0.1);
+            margin-top: 3rem;
+        }
+
+        .footer p {
+            color: var(--text-secondary);
+            margin: 0.5rem 0;
+        }
+
+        .social-links {
+            margin: 1.5rem 0;
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(236, 72, 153, 0.15));
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, #6366F1, #EC4899);
+            color: #FFFFFF;
+            transform: translateY(-5px);
+        }
+
+        /* ===== SMOOTH SCROLL BEHAVIOR ===== */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--primary);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .loader {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0, 212, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">AK</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Abhishek Kumar Shah</h1>
+            <h3>Computer Operator & Graphics Designer</h3>
+            <p>Passionate about creating stunning digital experiences and building innovative solutions. With expertise in graphics design, photography, and computer operations, I deliver creative excellence to every project.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                <a href="#about" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="skills">
+        <h2 class="section-title">Professional Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <h3>Graphics Design</h3>
+                <p>Expert in Canva with 92% proficiency. Creating visually stunning designs that captivate audiences and elevate brand identity.</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🖥️</div>
+                <h3>Computer Operations</h3>
+                <p>Proficient in computer operations with 98% excellence in basic computer course. Skilled in system management and troubleshooting.</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📷</div>
+                <h3>Photography</h3>
+                <p>Photography basics certified. Capturing moments and creating visual narratives that tell compelling stories.</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎬</div>
+                <h3>Video Editing</h3>
+                <p>Studio and video mixing expertise. Producing high-quality video content with professional editing techniques.</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">💼</div>
+                <h3>Professional Services</h3>
+                <p>Comprehensive computer operator services with attention to detail and client-focused approach.</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🌐</div>
+                <h3>Digital Marketing</h3>
+                <p>Digital content creation and optimization skills to maximize online presence and engagement.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about">
+        <div class="about-content">
+            <div>
+                <div class="avatar">
+                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/1148630e-240d-4469-a61a-b03bec8fba34" alt="Abhishek Kumar Shah">
+                </div>
+            </div>
+            <div class="about-text">
+                <h2>About Me</h2>
+                <p>I'm Abhishek Kumar Shah, a dedicated Computer Operator and Graphics Designer from Birgunj, Nepal. With a passion for technology and creative design, I strive to deliver exceptional results in every project.</p>
+                <p>My journey in the digital world has been marked by continuous learning and skill development. Whether it's designing captivating graphics, managing computer operations, or creating engaging video content, I bring creativity and precision to every task.</p>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">📍 Location</div>
+                        <div class="info-value">Birgunj, Nepal</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">📱 Mobile</div>
+                        <div class="info-value">+977 9805363671</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">✉️ Email</div>
+                        <div class="info-value">abhishekkumar2323hff@gmail.com</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">🗣️ Languages</div>
+                        <div class="info-value">Nepali, English, Hindi</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION SECTION -->
+    <section id="education" class="education">
+        <div class="education-container">
+            <h2 class="section-title">Education & Qualifications</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2025</div>
+                        <div class="timeline-title">Graphics Design With Canva</div>
+                        <div class="timeline-institution">Coursera</div>
+                        <div class="timeline-score">Percentage: 92%</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-title">Basic Computer Course</div>
+                        <div class="timeline-institution">Pragati Institute, Birgunj</div>
+                        <div class="timeline-score">Percentage: 98%</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-title">SEE (Secondary Education Examination)</div>
+                        <div class="timeline-institution">Shree Nepal National Secondary School</div>
+                        <div class="timeline-score">Percentage: 3.14</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2023</div>
+                        <div class="timeline-title">Photography Basic</div>
+                        <div class="timeline-institution">DS Studio and Video Mixing Lab</div>
+                        <div class="timeline-score">Percentage: 65%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact">
+        <div class="contact-container">
+            <h2 class="section-title">Get In Touch</h2>
+            
+            <div class="contact-box">
+                <div class="contact-icon">📧</div>
+                <h3>Email</h3>
+                <a href="mailto:abhishekkumar2323hff@gmail.com">abhishekkumar2323hff@gmail.com</a>
+            </div>
+
+            <div class="contact-box">
+                <div class="contact-icon">📱</div>
+                <h3>Phone</h3>
+                <a href="tel:+977-9805363671">+977 9805363671</a>
+            </div>
+
+            <div class="contact-box">
+                <div class="contact-icon">📍</div>
+                <h3>Location</h3>
+                <p style="color: var(--text-secondary);">Bahudarmai-4 Dokaila, Bahuari<br>Birgunj - 845305, Nepal</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="social-links">
+            <a href="#" title="Facebook">f</a>
+            <a href="#" title="Instagram">📷</a>
+            <a href="#" title="LinkedIn">in</a>
+            <a href="#" title="Email">✉️</a>
+        </div>
+        <p>&copy; 2025 Abhishek Kumar Shah. All rights reserved.</p>
+        <p>Crafted with creativity and passion</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        });
+
+        document.querySelectorAll('.skill-card, .timeline-item, .contact-box').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(15, 20, 25, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(15, 20, 25, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
